@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15-alpine # Puedes usar otra versión si prefieres (ej. 16-alpine)
+    restart: always
+    environment:
+      POSTGRES_DB: biblioteca # Nombre de la base de datos
+      POSTGRES_USER: laravel   # Usuario de la base de datos
+      POSTGRES_PASSWORD: pg.laravel.biblioteca     # Contraseña del usuario
+    ports:
+      - "5432:5432" # Mapea el puerto del contenedor al host
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persistencia de datos
+
+volumes:
+  db_data:
+      driver: local
